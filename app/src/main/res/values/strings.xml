@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">App Fitness</string>
+    <string name="this_is_an_image">Isto é uma imagem.</string>
+    <string name="label_imc">IMC</string>
 </resources>
