@@ -24,9 +24,16 @@ class ImcActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.invalid_fields_form, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            val weight = edtWeight.text.toString().toInt()
+            val height = edtHeight.text.toString().toInt()
+            val result = calculateIMC(weight, height)
 
 
         }
+    }
+
+    private fun calculateIMC(weight:Int, height:Int):Double{
+        return weight.toDouble()/(height.toDouble() * height.toDouble())
     }
 
     private fun validateForm(): Boolean{
