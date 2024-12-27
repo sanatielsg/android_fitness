@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 
 class ImcActivity : AppCompatActivity() {
@@ -28,12 +29,28 @@ class ImcActivity : AppCompatActivity() {
             val height = edtHeight.text.toString().toInt()
             val result = calculateIMC(weight, height)
 
+            val imcResponseId = imcResponse(result)
 
+            Toast.makeText(this, resources.getText(imcResponseId), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @StringRes
+    private fun imcResponse(imc: Double):Int{
+        return when{
+            imc < 15.0 -> R.string.imc_severely_low_weight
+            imc < 16.0 -> R.string.imc_very_low_weight
+            imc < 18.5 -> R.string.imc_low_weight
+            imc < 25.0 -> R.string.normal
+            imc < 30.0 -> R.string.imc_high_weight
+            imc < 35.0 -> R.string.imc_so_high_weight
+            imc < 40.0 -> R.string.imc_severely_high_weight
+            else -> R.string.imc_extreme_weight
         }
     }
 
     private fun calculateIMC(weight:Int, height:Int):Double{
-        return weight.toDouble()/(height.toDouble() * height.toDouble())
+        return (weight*1.0)/((height*0.01)*(height*0.01))
     }
 
     private fun validateForm(): Boolean{
