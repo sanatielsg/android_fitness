@@ -9,25 +9,11 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/btn_imc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@color/light_gray">
-
-        <ImageView
-            android:id="@+id/img_sunny"
-            android:src="@drawable/baseline_wb_sunny_24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/this_is_an_image"
-            />
-        <TextView
-            android:id="@+id/txt_label_imc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/imc"/>
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/main_item"
+        tools:itemCount="50"
+        />
 </LinearLayout>
