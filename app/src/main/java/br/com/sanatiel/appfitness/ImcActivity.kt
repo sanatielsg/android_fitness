@@ -1,7 +1,8 @@
 package br.com.sanatiel.appfitness
 
-import android.content.DialogInterface
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -41,6 +42,10 @@ class ImcActivity : AppCompatActivity() {
                 }
                 .create()
                 .show()
+
+            val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            manager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
         }
     }
 
