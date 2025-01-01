@@ -4,11 +4,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,20 +27,20 @@ class MainActivity : AppCompatActivity() {
                 textStringId =  R.string.label_imc ,
                 color = Color.GREEN)
         )
-        mainItems.add(mainItems[0])
-        mainItems.add(mainItems[0])
-        mainItems.add(mainItems[0])
         mainItems.add(
-            MainItem(id = 5,
-                drawableId = com.google.android.material.R.drawable.design_password_eye,
-                textStringId =  R.string.imc_extreme_weight,
-                color = Color.RED)
+            MainItem(id = 2,
+                drawableId = R.drawable.baseline_wb_sunny_24,
+                textStringId =  R.string.tmb ,
+                color = Color.GREEN)
         )
+        for (i in 1..2){
+            mainItems.add(mainItems[0])
+        }
 
         val adapter = MainAdapter(mainItems)
         rvMain = findViewById(R.id.rv_main)
         rvMain.adapter = adapter
-        rvMain.layoutManager = LinearLayoutManager(this)
+        rvMain.layoutManager = GridLayoutManager(this,3)
     }
 
     private inner class MainAdapter(private val mainItens: List<MainItem>): RecyclerView.Adapter<MainViewHolder>() {
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         fun bind(currentItem: MainItem) {
             val img: ImageView = itemView.findViewById(R.id.item_img_icon)
             val name : TextView = itemView.findViewById(R.id.item_txt_name)
-            val container: LinearLayout = itemView as LinearLayout
+            val container: LinearLayout = itemView.findViewById(R.id.item_container_imc)
 
             img.setImageResource(currentItem.drawableId)
             name.setText(currentItem.textStringId)
