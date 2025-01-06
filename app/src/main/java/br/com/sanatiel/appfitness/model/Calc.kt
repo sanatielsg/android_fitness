@@ -9,7 +9,7 @@ import java.util.Date
 data class Calc(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val type: String,
-    val result: Double,
+    val reslt: Double,
     @ColumnInfo(name = "created_date") val createdAt: Date = Date()
 ) {
 }

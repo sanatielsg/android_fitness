@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import br.com.sanatiel.appfitness.model.Calc
 
 class ImcActivity : AppCompatActivity() {
     private lateinit var edtWeight: EditText
@@ -41,14 +42,20 @@ class ImcActivity : AppCompatActivity() {
                     //not implemented yet
                 }
                 .setNegativeButton(R.string.save){dialog,whitch->
-
+                    Thread{
+                        val app = (application as App)
+                        val dao = app.db.calcDao()
+                        dao.insert(Calc(type = "imc", reslt = result))
+                        runOnUiThread {
+                            Toast.makeText(this@ImcActivity, R.string.saved, Toast.LENGTH_SHORT).show()
+                        }
+                    }.start()
                 }
                 .create()
                 .show()
 
             val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             manager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-
         }
     }
 
