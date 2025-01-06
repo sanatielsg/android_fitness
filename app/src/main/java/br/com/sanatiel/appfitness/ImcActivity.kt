@@ -1,6 +1,7 @@
 package br.com.sanatiel.appfitness
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -44,10 +45,12 @@ class ImcActivity : AppCompatActivity() {
                 .setNegativeButton(R.string.save){dialog,whitch->
                     Thread{
                         val app = (application as App)
-                        val dao = app.db.calcDao()
-                        dao.insert(Calc(type = "imc", reslt = result))
+                        app.db.calcDao().insert(Calc(type = "imc", reslt = result))
                         runOnUiThread {
-                            Toast.makeText(this@ImcActivity, R.string.saved, Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@ImcActivity,
+                                ListCalcActivity::class.java)
+                                .putExtra("type", "imc")
+                            )
                         }
                     }.start()
                 }
